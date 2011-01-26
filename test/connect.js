@@ -27,13 +27,9 @@ exports.req = function () {
         
         assert.eql(order, [1,2,3]);
         clearTimeout(to);
-    })
-    (function (r, c) {
-        assert.eql(r, obj);
-        assert.eql(c, conn);
-        order.push(1)
     })(obj, conn);
     
+    order.push(1);
     conn.emit('ready');
     order.push(2);
 };
