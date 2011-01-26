@@ -1,0 +1,27 @@
+{
+    "name" : "dnode-stack",
+    "version" : "0.0.1",
+    "description" : "dnode middleware for processing web middleware stacks for socket.io",
+    "modules" : {
+        "index" : "./index.js"
+    },
+    "repository" : {
+        "type" : "git",
+        "url" : "http://github.com/substack/dnode-stack.git"
+    },
+    "keywords" : [
+        "dnode",
+        "middleware",
+        "metamiddleware"
+    ],
+    "dependencies" : {
+        "seq" : ">=0.1.7"
+    },
+    "author" : {
+        "name" : "James Halliday",
+        "email" : "mail@substack.net",
+        "url" : "http://substack.net"
+    },
+    "license" : "MIT/X11",
+    "engine" : ["node >=0.2.0"]
+}
