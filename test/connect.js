@@ -19,14 +19,18 @@ exports.req = function () {
     var obj = { z : 1337 };
     var order = [];
     
-    stack(function (req_) {
-        assert.eql(req_, req);
+    stack(function (client, conn, req_) {
+        conn.on('request', function (req__) {
+            assert.ok(req__ === req);
+            order.push(4);
+            assert.eql(order, [1,2,3,4]);
+            clearTimeout(to);
+        });
+        
+        assert.ok(req_ === req);
         assert.ok(req.headers);
         assert.ok(req.cookies);
         order.push(3);
-        
-        assert.eql(order, [1,2,3]);
-        clearTimeout(to);
     })(obj, conn);
     
     order.push(1);
