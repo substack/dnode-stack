@@ -2,9 +2,7 @@
     "name" : "dnode-stack",
     "version" : "0.0.2",
     "description" : "dnode middleware for processing web middleware stacks for socket.io",
-    "modules" : {
-        "index" : "./index.js"
-    },
+    "main" : "./index.js",
     "repository" : {
         "type" : "git",
         "url" : "http://github.com/substack/dnode-stack.git"
