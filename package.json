@@ -1,6 +1,6 @@
 {
     "name" : "dnode-stack",
-    "version" : "0.0.1",
+    "version" : "0.0.2",
     "description" : "dnode middleware for processing web middleware stacks for socket.io",
     "modules" : {
         "index" : "./index.js"
