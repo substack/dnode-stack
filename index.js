@@ -3,6 +3,7 @@ var Seq = require('seq');
 module.exports = function (cb) {
     return function (client, conn) {
         var req = conn.stream.socketio.request;
+        
         if (conn.stream.socketio && req.socket && req.socket.server) {
             conn.on('ready', function () {
                 Seq.ap(req.socket.server.stack || [])
@@ -16,7 +17,9 @@ module.exports = function (cb) {
                         }
                     })
                     .seq(function () {
-                        if (cb) cb(req)
+                        conn.request = req;
+                        if (cb) cb(client, conn, req)
+                        conn.emit('request', req);
                     })
                 ;
             });

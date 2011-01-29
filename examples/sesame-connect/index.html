@@ -1,0 +1,60 @@
+<html>
+<head>
+<script src="/dnode.js" type="text/javascript"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+    DNode({
+        session : function (session) {
+            if (!session) {
+                $('#auth').show();
+            }
+            else {
+                $('#auth :visible').slideUp();
+                $('#user').text(session.user);
+                $('#content').show();
+                
+                session.says('cat', function (msg) {
+                    $('#cat').text(msg);
+                });
+                
+                session.says('dog', function (msg) {
+                    $('#dog').text(msg);
+                });
+            }
+        }
+    }).connect(function (remote) {
+        $('#auth').submit(function (ev) {
+            ev.preventDefault();
+            remote.auth(
+                $(this.elements.user).val(),
+                $(this.elements.pass).val(),
+                function (err) {
+                    $('#error').text(err || '')
+                }
+            )
+        });
+    });
+</script>
+</head>
+<body>
+    <form id="auth" style="display: none">
+        <input type="text" name="user">
+        <input type="text" name="pass">
+        <input type="submit" value="sign in">
+        <div id="error"></div>
+    </form>
+    
+    <div style="display: none">
+        Signed in as <span id="user">
+    </div>
+    
+    <div id="content" style="display: none">
+        <div>
+            The cat says <span id="cat">?</span>.
+        </div>
+        <div>
+            The dog says <span id="dog">?</span>.
+        </div>
+    </div>
+</body>
+</html>
